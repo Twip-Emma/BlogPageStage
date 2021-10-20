@@ -7,5 +7,18 @@
 >- user_pass varchar 用户密码，由用户注册时填入
 >- user_exp int 用户经验值
 
+#### 用户信息表user_info_detail
+>- user_id varchar 用户id，后台自动生成
+>- user_head_image varchar 用户头像路径，由用户传入，默认-
+>- user_article_total int 发布过的文章数量
+>- user_comment_total int 发表过的评论数量
+>- user_star_total int 用户获得的点赞总数
+
 #### 文章表article
 >- article_id varchar 文章id，后台自动生成
+
+
+## 目前已实现的功能
+
+#### 登录系统
+>- 创建新用户，并且判断是否重复

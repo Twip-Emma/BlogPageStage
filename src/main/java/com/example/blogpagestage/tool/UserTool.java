@@ -19,4 +19,14 @@ public class UserTool {
             return true;
         }
     }
+
+    public Boolean checkUserPass(User user){
+        User re = userDao.findUser(user.getUserCard());
+        if(re.getUserPass().equals(user.getUserPass())){
+            //密码正确了...
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
