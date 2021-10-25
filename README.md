@@ -14,8 +14,21 @@
 >- user_comment_total int 发表过的评论数量
 >- user_star_total int 用户获得的点赞总数
 
-#### 文章表article
+#### 文章表article_info
 >- article_id varchar 文章id，后台自动生成
+>- user_id varchar 用户id
+>- article_context varchar 文章正文
+>- article_good_el int 文章赞
+>- article_bad_el int 文章踩
+
+
+#### 文章评论表article_comment
+>- article_id varchar 文章id，后台自动生成
+>- comment_id varchar 评论id，后台自动生成
+>- user_id varchar 用户id
+>- comment_context varchar 评论正文
+>- comment_good_el int 评论赞
+>- comment_bad_el int 评论踩
 
 
 ## 目前已实现的功能

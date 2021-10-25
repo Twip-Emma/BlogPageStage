@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/login")
@@ -43,10 +44,12 @@ public class LoginController {
 
     @PostMapping("/isLogin")
     public String getUserData(HttpServletRequest request, HttpServletResponse response){
-        User userInfo = userService.getUserInfo(request);
+        Map<String,Object> userInfo = userService.getUserInfo(request);
         if(userInfo != null) {
-            System.out.println(userInfo);
-            String userData = JSON.toJSONString(userInfo);
+            System.out.println(userInfo.get("userinfo"));
+            System.out.println(userInfo.get("userdetail"));
+            String userData = "[" + JSON.toJSONString(userInfo.get("userinfo")) + ",";
+            userData += JSON.toJSONString(userInfo.get("userdetail")) + "]";
             return userData;
         }else {
             return "请先登录";
