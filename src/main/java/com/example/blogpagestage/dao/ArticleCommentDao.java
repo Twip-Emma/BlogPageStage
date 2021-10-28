@@ -12,11 +12,11 @@ public interface ArticleCommentDao {
     @Results(id = "articleComment",
             value = {
                     @Result(id = true,column = "article_id", property = "articleId"),
-                    @Result(id = true,column = "comment_id", property = "commentId"),
-                    @Result(id = true,column = "user_id", property = "userId"),
-                    @Result(id = true,column = "comment_context", property = "commentContext"),
-                    @Result(id = true,column = "comment_good_el", property = "commentGoodEl"),
-                    @Result(id = true,column = "comment_bad_el", property = "commentBadEl")
+                    @Result(column = "comment_id", property = "commentId"),
+                    @Result(column = "user_id", property = "userId"),
+                    @Result(column = "comment_context", property = "commentContext"),
+                    @Result(column = "comment_good_el", property = "commentGoodEl"),
+                    @Result(column = "comment_bad_el", property = "commentBadEl")
             })
     List<ArticleComment> findAll();
 
@@ -30,4 +30,8 @@ public interface ArticleCommentDao {
     @ResultMap(value = "articleComment")
     @Select("select * from article_comment where comment_id=#{commentId}")
     ArticleComment findComment(String commentId);
+
+    @ResultMap(value = "articleComment")
+    @Select("select * from article_comment where article_id=#{articleId}")
+    List<ArticleComment> articleCommentList(String articleId);
 }

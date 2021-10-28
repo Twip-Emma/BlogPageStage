@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping(value = "/login", produces = "application/json;charset=UTF-8")
 public class LoginController {
     @Autowired
     UserTool userTool;
@@ -27,7 +27,7 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/goTo")
+    @PostMapping(value = "/goTo")
     public String userToLogin(@RequestBody String userData, HttpSession session){
         User user = JSONObject.parseObject(userData, User.class);
         if(!userTool.checkNewUser(user)){

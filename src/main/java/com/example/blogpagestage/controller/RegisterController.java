@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@RequestMapping("/register")
+@RequestMapping(value = "/register", produces = "application/json;charset=UTF-8")
 @RestController
 public class RegisterController {
     @Autowired

@@ -17,6 +17,7 @@
 #### 文章表article_info
 >- article_id varchar 文章id，后台自动生成
 >- user_id varchar 用户id
+>- article_title varchar 文章标题
 >- article_context varchar 文章正文
 >- article_good_el int 文章赞
 >- article_bad_el int 文章踩

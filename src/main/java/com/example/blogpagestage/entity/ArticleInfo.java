@@ -6,6 +6,7 @@ import lombok.Data;
 public class ArticleInfo {
     private String articleId;
     private String userId;
+    private String articleTitle;
     private String articleContext;
     private Integer articleGoodEl;
     private Integer articleBadEl;

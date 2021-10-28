@@ -11,14 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
         Object userinfo = request.getSession().getAttribute("userinfo");
         if(userinfo != null){
-            request.setAttribute("logintype",true);
+//            request.getSession().setAttribute("logintype",true);
+            return true;
         }else{
-            request.setAttribute("logintype",false);
+//            request.getSession().setAttribute("logintype",false);
+            return false;
         }
-        response.sendRedirect("/returnLoginType");
-        return true;
     }
 
     @Override

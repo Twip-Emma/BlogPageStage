@@ -16,7 +16,7 @@ public class _AutoController {
     //将当前登录状态返回给前端
     @RequestMapping("/returnLoginType")
     public String userLoginType(HttpServletRequest request){
-        if((boolean)request.getAttribute("logintype")){
+        if((boolean)request.getSession().getAttribute("logintype")){
             return "true";
         }else {
             return "false";
