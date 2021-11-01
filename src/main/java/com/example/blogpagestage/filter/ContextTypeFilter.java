@@ -18,7 +18,7 @@ public class ContextTypeFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("utf-8");
-        System.out.println("触发！");
+//        System.out.println("触发！");
         chain.doFilter(request, response);
     }
 }

@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
-@RequestMapping("/article")
+@RequestMapping(value = "/article", produces = "application/json;charset=UTF-8")
 public class ArticleController {
     @Autowired
     ArticleService articleService;
@@ -22,5 +23,19 @@ public class ArticleController {
         ArticleInfo articleInfo = JSONObject.parseObject(articleData, ArticleInfo.class);
         articleService.createNewArticle(articleInfo,request);
         return "ok?";
+    }
+
+    @PostMapping("/getUserAllArticle")
+    public List<ArticleInfo> getUserAllArticle(HttpServletRequest request){
+        List<ArticleInfo> userAllArticle = articleService.getUserAllArticle(request);
+        return userAllArticle;
+    }
+
+    @PostMapping("/getAllComment")
+    public String getAllComment(@RequestBody String articleId, HttpServletRequest request){
+//        ArticleInfo articleInfo = JSONObject.parseObject(articleData, ArticleInfo.class);
+//        articleService.createNewArticle(articleInfo,request);
+        System.out.println(articleId);
+        return "ok2?";
     }
 }
