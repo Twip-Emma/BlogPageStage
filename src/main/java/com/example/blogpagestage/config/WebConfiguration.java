@@ -10,14 +10,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 @Configuration
 public class WebConfiguration extends WebMvcConfigurationSupport {
 
+    //注入写好的拦截器
     @Autowired
     LoginInterceptor loginInterceptor;
 
+    //设置你要拦截的路径
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/login/**","/register/**");
     }
 
+    //定义映射
     @Override
     protected void addViewControllers(ViewControllerRegistry registry) {
         super.addViewControllers(registry);

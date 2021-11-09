@@ -29,6 +29,7 @@ public class LoginController {
 
     @PostMapping(value = "/goTo")
     public String userToLogin(@RequestBody String userData, HttpSession session){
+        System.out.println(userData);
         User user = JSONObject.parseObject(userData, User.class);
         if(!userTool.checkNewUser(user)){
             if(userTool.checkUserPass(user)){

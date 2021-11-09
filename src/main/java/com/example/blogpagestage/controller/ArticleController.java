@@ -20,8 +20,12 @@ public class ArticleController {
 
     @PostMapping("/newArticle")
     public String newArticle(@RequestBody String articleData, HttpServletRequest request){
+//        System.out.println(articleData + "@@@@");
         ArticleInfo articleInfo = JSONObject.parseObject(articleData, ArticleInfo.class);
         articleService.createNewArticle(articleInfo,request);
+
+        String logging = "|  INFO  | 用户：" + request.getSession().getAttribute("userinfo") + " | 发表了一篇文章";
+        System.out.println(logging);
         return "ok?";
     }
 

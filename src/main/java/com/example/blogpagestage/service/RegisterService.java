@@ -23,8 +23,8 @@ public class RegisterService {
     public Boolean CreatNewUser(User user) {
         Boolean re = userTool.checkNewUser(user);
         if (re) {
-            String nowTime = new Date().toString();
-            user.setUserId(nowTime + user.getUserCard());
+//            String nowTime = new Date().toString();
+            user.setUserId(userTool.getUserUUID());
             userDetailDao.creatNewUser(user.getUserId());
             userDao.creatNewUser(user.getUserId(), user.getUserCard(), user.getUserPass(), user.getUserName());
             return true;

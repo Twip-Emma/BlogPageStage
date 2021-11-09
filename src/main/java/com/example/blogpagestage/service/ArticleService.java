@@ -6,6 +6,7 @@ import com.example.blogpagestage.dao.UserDao;
 import com.example.blogpagestage.entity.ArticleComment;
 import com.example.blogpagestage.entity.ArticleInfo;
 import com.example.blogpagestage.entity.User;
+import com.example.blogpagestage.tool.UserTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,27 +25,28 @@ public class ArticleService {
     @Autowired
     ArticleCommentDao articleCommentDao;
 
+    @Autowired
+    UserTool userTool;
+
     public Boolean createNewArticle(ArticleInfo articleInfo, HttpServletRequest request){
         System.out.println(articleInfo);
         User user = (User)request.getSession().getAttribute("userinfo");
-        User userRe = userDao.findUser(user.getUserCard());
-        String nowTime = new Date().toString();
-        String articleId = nowTime + user.toString();
+        User userRe = userDao.findUserByUserCard(user.getUserCard());
+        String articleId = userTool.getArticleUUID();
         articleInfoDao.CreateNewArticle(articleInfo.getArticleTitle(),articleId, userRe.getUserId(), articleInfo.getArticleContext(),0,0);
         return true;
     }
 
     public List<ArticleInfo> getUserAllArticle(HttpServletRequest request){
         User userInfo = (User)request.getSession().getAttribute("userinfo");
-        User user = userDao.findUser(userInfo.getUserCard());
+        User user = userDao.findUserByUserCard(userInfo.getUserCard());
         List<ArticleInfo> articleInfoList = articleInfoDao.findArticleInfoByUser(user.getUserId());
-//        String dataByHtml = "{";
         return articleInfoList;
     }
 
     public List<ArticleComment> getAllCommentInArticle(HttpServletRequest request,String articleId){
         User userinfo = (User) request.getSession().getAttribute("userinfo");
-        User user = userDao.findUser(userinfo.getUserCard());
+        User user = userDao.findUserByUserCard(userinfo.getUserCard());
         List<ArticleComment> articleComments = articleCommentDao.articleCommentList(articleId);
         return articleComments;
     }

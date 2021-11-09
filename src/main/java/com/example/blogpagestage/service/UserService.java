@@ -25,7 +25,7 @@ public class UserService {
         if(re == null){
             return null;
         }else{
-            User user = userDao.findUser(re.getUserCard());
+            User user = userDao.findUserByUserCard(re.getUserCard());
             userMaps.put("userinfo",user);
             UserDetail userDetailDaoUser = userDetailDao.findUser(user.getUserId());
             userMaps.put("userdetail",userDetailDaoUser);
